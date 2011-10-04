@@ -1,7 +1,7 @@
 i2DX
 ====
 
-i2DX is a web-based IIDX controller for iPad. One night project 2011-10-04.
+i2DX is a web-based IIDX controller for iPad. One night project 2011-10-04. [__Video demo__](http://www.youtube.com/watch?v=C3cZsZYK4Jo)
 
 You can use it with [StepMania 5](http://www.stepmania.com/), especially with the
 [beatmaniaIIDX15 theme](http://www.stepmania.com/forums/showthread.php?28308-SM5-beatmaniaIIDX15-theme-and-noteskin&p=195991#post195991).
@@ -15,12 +15,12 @@ It uses the following technologies:
 * [OSCulator](http://www.osculator.net/)
 
 It only works with Mac OS X for now due to its requirement of OSCulator.
-I also tried to make it work with Windows (using autopy),
-but the websocket server has very long latancy. You press the button
-on the iPad, it gets registered one second later, thus made it unplayable.
+I first tried to make it work with Windows (using autopy),
+but the websocket server seems to have very long latancy. You press the button
+on the iPad, it gets registered half a second later, thus made it unplayable.
 
-If anyone can port this to make it work on Windows (using any language), or Linux,
-I would appreciate it very much!
+__Fork me!__ If anyone can port this to make it work on Windows (using any language),
+or Linux, I would appreciate it very much. :)
 
 
 
@@ -55,7 +55,7 @@ You have to install OSCulator, and then use Terminal to install Tornado and pyOS
     sudo easy_install tornado
     sudo easy_install pyOSC
 
-Set OSCulator to port 9000.
+Open OSCulator and set it to port 9000.
 
 `cd` to the client directory and then
 
@@ -63,24 +63,28 @@ Set OSCulator to port 9000.
 
 This serves the client files in port 8000.
 
-Then, `cd` to the application directory and then
+Then, `cd` to the __server__ directory and then
 
     python server.py
 
-to start the WebSockets server.
+to start the WebSocket server on port 9876. Make sure both ports are accessible from the iPad.
 
 Then, use your iPad to navigate to
 
     http://[your ip]:8000/
 
-and press the buttons and try out the scratches. The OSC messages should show up in OSCulator.
+If everything works correctly, then it should say "Ready" at the top left. If you press a button
+and it changes to "Disconnected", then the key presses could not get through to OSCulator.
+Fix it and refresh the page and try again.
+
+Press the buttons and try out the scratches. The OSC messages should show up in OSCulator.
 Then in OSCulator, map the messages to the joystick events and enjoy!
 
 Additionally, you can also point your iPhone or another iPad to
 
     http://[your ip]:8000/scratch.html
 
-to use it as a dedicated scratch controller. I borrowed my friend's iPod Touch for this.
+to use it as a scratch controller. I borrowed my friend's iPod Touch for this.
 He also has a mat for his iPod so that it doesn't slip when he plays jubeat or other music
 games on his iPod. Just telling you a story. ;p
 
