@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>i2DX Scratch</title>
+<meta charset="UTF-8">
+<script src=client.js></script>
+<link rel=stylesheet href=client.css>
+<script>
+window.onload = function() {
+
+	I2DX({
+		turntable: 'sc',
+		turntableWidth: 0,
+		turntablePosition: 'left',
+		turntableMode: screen.width >= 640 && screen.height >= 640 ? 'angular' : 'linear',
+		turntableSensitivity: 1,
+		turntableDisplay: 'scspin'
+	});
+
+};
+</script>
+<style>
+	.sc { top: 0; left: 0; bottom: 0; right: 0px;  }
+	#status { top: 20px; left: 20px; }
+	#scspin { position: absolute; top: 50%; left: 50%; margin-top: -50px; margin-left: -200px;
+		width: 400px; height: 100px; text-align: center;
+		font: bold 160px/100px Helvetica; color: #8b8685;
+		-webkit-transform: translateZ(0); display: none; }
+	@media screen and (min-device-width: 640px) and (min-device-height: 640px) {
+		#scspin { display: block; }
+	}
+</style>
+</head>
+<body>
+
+<div id="sc"></div>
+<div id="scspin">i2DX</div>
+<div id="status">Connecting to i2DX Server...</div>
