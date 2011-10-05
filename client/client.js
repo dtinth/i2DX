@@ -1,6 +1,6 @@
 var I2DX = function(options) {
 
-	var s = new WebSocket("ws://" + location.host.replace(/:\d+$|$/, ':9876') + "/");
+	var s = new WebSocket("ws://" + location.host + "/ws");
 	(function() {
 		function setStatus(text) {
 			document.getElementById('status').innerHTML = text;
@@ -117,7 +117,7 @@ var I2DX = function(options) {
 		return function(e) {
 			for (var i = 0; i < e.changedTouches.length; i ++) {
 				var c = e.changedTouches[i];
-				if ((options.turntableWidth == 0 || c.pageX < options.turntableWidth) && e.type != 'touchend') {
+				if ((options.turntableWidth == 0 || (options.turntablePosition == 'right' ? document.documentElement.offsetWidth - c.pageX : c.pageX) < options.turntableWidth) && e.type != 'touchend') {
 					var position;
 					if (options.turntableMode == 'angular') {
 						position = (function() {
@@ -139,6 +139,7 @@ var I2DX = function(options) {
 					}
 					if (turntables[c.identifier] != null) {
 						var delta = position - turntables[c.identifier];
+						if (options.turntableMode == 'angular') delta *= 2;
 						value += delta * Math.abs(delta);
 					}
 					turntables[c.identifier] = position;
@@ -155,6 +156,12 @@ var I2DX = function(options) {
 	document.ontouchstart = document.ontouchmove = document.ontouchend = function(e) {
 		return updateTouch(e);
 	};
+
+	if (window.opera) {
+		setInterval(function() {
+			s.send('junk');
+		}, 100);
+	}
 
 	function updateTouch(e) {
 		updateButtons(e);

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>i2DX IIDX Controller</title>
+<meta charset="UTF-8">
+<script src=client.js></script>
+<link rel=stylesheet href=client.css>
+<script>
+window.onload = function() {
+
+	I2DX({
+		buttons: ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
+		buttonThreshould: 25,
+		initButton: function(el, i) {
+			el.style.left = (90 + 80 * i) + 'px';
+			el.style.top = (320 - 240 * (i%2)) + 'px';
+		},
+		turntable: 'sc',
+		turntableWidth: 220,
+		turntablePosition: 'right',
+		turntableMode: 'linear',
+		turntableSensitivity: 1
+	});
+
+};
+</script>
+<style>
+	.up, .down { width: 120px; height: 200px; }
+	h1 { position: absolute; bottom: 0; right: 250px; }
+	.sc { top: 0; right: 0; bottom: 0; width: 220px; }
+	#status { top: 20px; left: 30px;  }
+</style>
+</head>
+<body>
+
+<h1>Powered by HTML5+WebSockets</h1>
+<div id="a"></div>
+<div id="b"></div>
+<div id="c"></div>
+<div id="d"></div>
+<div id="e"></div>
+<div id="f"></div>
+<div id="g"></div>
+<div id="sc"></div>
+<div id="status">Connecting to i2DX Server...</div>

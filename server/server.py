@@ -1,13 +1,19 @@
 import tornado
 from tornado import websocket
 import OSC
+from os import path
 
 client = OSC.OSCClient()
 client.connect( ('127.0.0.1', 9000) )
 
-class EchoWebSocket(websocket.WebSocketHandler):
+class I2DXTopHandler(tornado.web.RequestHandler):
+	def get(self):
+		self.redirect('static/index.html')
+
+class I2DXWebSocket(websocket.WebSocketHandler):
 	def open(self):
 		self.write_message("Ready")
+		print "connection opened"
 
 	def on_message(self, message):
 		if message[0] == '1':
@@ -22,9 +28,11 @@ class EchoWebSocket(websocket.WebSocketHandler):
 	def on_close(self):
 		print "closed"
 
+clientdir = path.join(path.dirname(path.dirname(path.abspath(__file__))), 'client')
 application = tornado.web.Application([
-    (r"/", EchoWebSocket),
-])
+	(r"/", I2DXTopHandler),
+    (r"/ws", I2DXWebSocket),
+], static_path=clientdir)
 
 if __name__ == "__main__":
     application.listen(9876)

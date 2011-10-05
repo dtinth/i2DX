@@ -1,7 +1,7 @@
 i2DX
 ====
 
-i2DX is a web-based IIDX controller for iPad. One night project 2011-10-04. [__Video demo__](http://www.youtube.com/watch?v=C3cZsZYK4Jo)
+i2DX is a web-based IIDX controller for iPad / Opera Mobile. One night project 2011-10-04. [__Video demo__](http://www.youtube.com/watch?v=C3cZsZYK4Jo)
 
 You can use it with [StepMania 5](http://www.stepmania.com/), especially with the
 [beatmaniaIIDX15 theme](http://www.stepmania.com/forums/showthread.php?28308-SM5-beatmaniaIIDX15-theme-and-noteskin&p=195991#post195991).
@@ -57,21 +57,15 @@ You have to install OSCulator, and then use Terminal to install Tornado and pyOS
 
 Open OSCulator and set it to port 9000.
 
-`cd` to the client directory and then
-
-    python -m SimpleHTTPServer
-
-This serves the client files in port 8000.
-
 Then, `cd` to the __server__ directory and then
 
     python server.py
 
-to start the WebSocket server on port 9876. Make sure both ports are accessible from the iPad.
+to start the WebSocket server on port 9876. Make sure the port is accessible from the device.
 
 Then, use your iPad to navigate to
 
-    http://[your ip]:8000/
+    http://[your ip]:9876/
 
 If everything works correctly, then it should say "Ready" at the top left. If you press a button
 and it changes to "Disconnected", then the key presses could not get through to OSCulator.
@@ -80,16 +74,35 @@ Fix it and refresh the page and try again.
 Press the buttons and try out the scratches. The OSC messages should show up in OSCulator.
 Then in OSCulator, map the messages to the joystick events and enjoy!
 
-Additionally, you can also point your iPhone or another iPad to
+Additionally, you can also point another iDevice to
 
-    http://[your ip]:8000/scratch.html
+    http://[your ip]:9876/static/scratch.html
 
-to use it as a scratch controller. I borrowed my friend's iPod Touch for this.
+to use it as a dedicated scratch controller. I borrowed my friend's iPod Touch for this.
 He also has a mat for his iPod so that it doesn't slip when he plays jubeat or other music
 games on his iPod. Just telling you a story. ;p
 
 Note that the standalone scratch page only supports up/down movement on iPhone, but you can
 use rotation in iPad.
+
+
+Usage with Opera Mobile
+-----------------------
+
+Download Opera Mobile from the market and install it.
+
+Go to opera:config and search for WebSockets and __Enable WebSockets__, then save.
+
+
+
+Available Client Files
+----------------------
+
+* `http://[your ip]:9876/static/index.html` - __main controller__ with scratch on the left
+* `http://[your ip]:9876/static/alternate.html` - __main controller__ with scratch on the right
+* `http://[your ip]:9876/static/scratch.html` - __scratch controller__
+    * If you open your scratch controller in iPad, then you can rotate to scratch,
+	on other devices it use only up/down motion.
 
 
 Message maps
