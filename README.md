@@ -14,10 +14,10 @@ It uses the following technologies:
 	* [pyOSC](https://trac.v2.nl/wiki/pyOSC)
 * [OSCulator](http://www.osculator.net/)
 
-It only works with Mac OS X for now due to its requirement of OSCulator.
+It only works with Mac OS X host for now due to its requirement of OSCulator.
 I first tried to make it work with Windows (using autopy),
-but the websocket server seems to have very long latancy. You press the button
-on the iPad, it gets registered half a second later, thus made it unplayable.
+but the websocket server seems to have very long latancy. You press the button,
+it gets registered half a second later, thus made it unplayable.
 
 __Fork me!__ If anyone can port this to make it work on Windows (using any language),
 or Linux, I would appreciate it very much. :)
@@ -27,8 +27,8 @@ or Linux, I would appreciate it very much. :)
 How it works
 ------------
 
-HTML files are served via a web server, and a separate WebSocket server receives
-key press events from the iPad.
+The server serves the file to the device's web browser, which connects back to
+the server via WebSocket and send the press / release events.
 
 The WebSocket server then sends these events via OSC to OSCulator, which can then be used to
 map the received OSC events to joystick events and pass it to the game.
@@ -37,18 +37,20 @@ map the received OSC events to joystick events and pass it to the game.
 If you can get it to work with it, please let me know).
 
 
+
 Setup
 -----
 
 * A Mac OS-based computer
-* An iPad
-* An additional iPad / iPhone / iPod Touch (used as a separate scatch)
-* A working WiFi connection (may or may not have internet access, but I think ad-hoc is the best)
+* An iPad or Android tablet device with Opera Mobile
+* An additional device (iPad, iPhone, iPod touch, or almost any touch Android phones) (optional, used as a dedicated scratch controller)
+* A working WiFi connection (may or may not have internet access. In my opinion, ad-hoc is the best)
 * A beatmaniaIIDX simulator (I use StepMania 5 with IIDX15 theme)
 
 
-Usage (with OSCulator)
-----------------------
+
+Usage
+-----
 
 You have to install OSCulator, and then use Terminal to install Tornado and pyOSC Python modules.
 
@@ -61,11 +63,13 @@ Then, `cd` to the __server__ directory and then
 
     python server.py
 
-to start the WebSocket server on port 9876. Make sure the port is accessible from the device.
+to start the i2DX server on port 9876. Make sure the port is accessible from the device.
 
-Then, use your iPad to navigate to
+Then, use your iPad or Android tablet to navigate to
 
     http://[your ip]:9876/
+
+__For Opera Mobile users:__ before that, go to opera:config and search for WebSockets and __Enable WebSockets__, then save.
 
 If everything works correctly, then it should say "Ready" at the top left. If you press a button
 and it changes to "Disconnected", then the key presses could not get through to OSCulator.
@@ -74,7 +78,7 @@ Fix it and refresh the page and try again.
 Press the buttons and try out the scratches. The OSC messages should show up in OSCulator.
 Then in OSCulator, map the messages to the joystick events and enjoy!
 
-Additionally, you can also point another iDevice to
+Additionally, you can also point another device to
 
     http://[your ip]:9876/static/scratch.html
 
@@ -82,16 +86,17 @@ to use it as a dedicated scratch controller. I borrowed my friend's iPod Touch f
 He also has a mat for his iPod so that it doesn't slip when he plays jubeat or other music
 games on his iPod. Just telling you a story. ;p
 
-Note that the standalone scratch page only supports up/down movement on iPhone, but you can
-use rotation in iPad.
+On the iPad, the dedicated scratch controller supports rotational movements, so if you
+can borrow another iPad, then you can use it as a scratch controller! On other devices, it
+only supports up / down movement, but it can be used to make the buttons and the turntable farther.
 
+Now that if you have a scratch controller, you may not want it on the main controller anymore,
+you can move the scratch area of the main controller to the right, by navigating to
 
-Usage with Opera Mobile
------------------------
+    http://[your ip]:9876/static/alternate.html
 
-Download Opera Mobile from the market and install it.
+on your main controller device.
 
-Go to opera:config and search for WebSockets and __Enable WebSockets__, then save.
 
 
 
@@ -103,6 +108,7 @@ Available Client Files
 * `http://[your ip]:9876/static/scratch.html` - __scratch controller__
     * If you open your scratch controller in iPad, then you can rotate to scratch,
 	on other devices it use only up/down motion.
+
 
 
 Message maps
