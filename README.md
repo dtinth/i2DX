@@ -6,6 +6,13 @@ i2DX is a web-based IIDX controller for iPad / Opera Mobile. One night project 2
 You can use it with [StepMania 5](http://www.stepmania.com/), especially with the
 [beatmaniaIIDX15 theme](http://www.stepmania.com/forums/showthread.php?28308-SM5-beatmaniaIIDX15-theme-and-noteskin&p=195991#post195991).
 
+Because it is __web based__, you just need to run the server application on your Mac, and then point your device's
+web browser to the server (they must be on the same wireless network!).
+__No application installation needed on the device.__ (I particularly like this because I could borrow
+someone's device and use it as a scratch controller [see below] :P).
+
+--------------
+
 It uses the following technologies:
 
 * [WebSocket](http://websocket.org/)
