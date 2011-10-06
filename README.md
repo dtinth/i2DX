@@ -1,5 +1,5 @@
-i2DX
-====
+![i2DX](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/i2DX.png)
+=======
 
 i2DX is a web-based IIDX controller for iPad / Opera Mobile. One night project 2011-10-04. [__Video demo__](http://www.youtube.com/watch?v=C3cZsZYK4Jo)
 
@@ -24,6 +24,7 @@ or Linux, I would appreciate it very much. :)
 
 
 
+
 How it works
 ------------
 
@@ -35,6 +36,19 @@ map the received OSC events to joystick events and pass it to the game.
 
 (Note: I can't get it to work with [ixi-software's HID server](http://www.ixi-audio.net/content/body_backyard_python.html).
 If you can get it to work with it, please let me know).
+
+
+
+The Controllers
+---------------
+
+![Main Controller](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/Main.png)
+
+![Alternate Controller (scratch on the right)](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/Alternate.png)
+
+![Scratch Controller for iPad](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/Scratch2.png)
+
+![Scratch Controller for Small Screens](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/Scratch.png)
 
 
 
