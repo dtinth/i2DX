@@ -42,13 +42,13 @@ If you can get it to work with it, please let me know).
 The Controllers
 ---------------
 
-![Main Controller](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/Main.png)
+![Main Controller](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/Main.png?x=1)
 
-![Alternate Controller (scratch on the right)](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/Alternate.png)
+![Alternate Controller (scratch on the right)](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/Alternate.png?x=1)
 
-![Scratch Controller for iPad](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/Scratch2.png)
+![Scratch Controller for iPad](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/Scratch2.png?x=1)
 
-![Scratch Controller for Small Screens](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/Scratch.png)
+![Scratch Controller for Small Screens](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/Scratch.png?x=1)
 
 
 
