@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=800">
+<title>i2DX IIDX Controller</title>
+<meta charset="UTF-8">
+<script src=client.js></script>
+<link rel=stylesheet href=client.css>
+<script>
+window.onload = function() {
+
+	I2DX({
+		buttons: ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
+		buttonThreshould: 25,
+		initButton: function(el, i) {
+			el.style.left = (80 + 80 * i) + 'px';
+			el.style.top = (260 - 240 * (i%2)) + 'px';
+		}
+	});
+
+};
+</script>
+<style>
+	.up, .down { width: 120px; height: 200px; }
+	h1 { position: absolute; top: 0; right: 30px; }
+	#status { top: 20px; left: 30px;  }
+</style>
+</head>
+<body>
+
+<h1>i2DX</h1>
+<div id="a"></div>
+<div id="b"></div>
+<div id="c"></div>
+<div id="d"></div>
+<div id="e"></div>
+<div id="f"></div>
+<div id="g"></div>
+<div id="sc"></div>
+<div id="status">Connecting to i2DX Server...</div>

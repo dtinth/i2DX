@@ -1,10 +1,10 @@
 var I2DX = function(options) {
 
 	var s = new WebSocket("ws://" + location.host + "/ws");
+	function setStatus(text) {
+		document.getElementById('status').innerHTML = text;
+	}
 	(function() {
-		function setStatus(text) {
-			document.getElementById('status').innerHTML = text;
-		}
 		s.onopen = function(e) {
 			setStatus('Connected!');
 		};
@@ -16,6 +16,22 @@ var I2DX = function(options) {
 		};
 		s.onerror = function(e) {
 			setStatus("error: " + e.data);
+		};
+	})();
+	
+	var send, flush;
+	(function() {
+		var sent = false, junk;
+		for (junk = 'junk'; junk.length < 4096; junk += junk) {};
+		send = function(x) {
+			s.send(x);
+			sent = true;
+		};
+		flush = function() {
+			if (sent) {
+				s.send(junk);
+				sent = false;
+			}
 		};
 	})();
 
@@ -56,16 +72,17 @@ var I2DX = function(options) {
 				if (newKeys[k] && !lastKeys[k]) {
 					buttons[k].className = 'down';
 					lastKeys[k] = true;
-					s.send('1' + k);
+					send('1' + k);
 				}
 			}
 			for (var k in lastKeys) {
 				if (lastKeys[k] && !newKeys[k]) {
 					buttons[k].className = 'up';
 					delete lastKeys[k];
-					s.send('0' + k);
+					send('0' + k);
 				}
 			}
+			flush();
 		};
 
 	})();
@@ -104,12 +121,13 @@ var I2DX = function(options) {
 			}
 			if (turntable != nt) {
 				if (turntable != 0) {
-					s.send('0' + turntable);
+					send('0' + turntable);
 				}
 				turntable = nt;
 				if (turntable != 0) {
-					s.send('1' + turntable);
+					send('1' + turntable);
 				}
+				flush();
 				updateClass();
 			}
 		}, 10);
@@ -156,12 +174,6 @@ var I2DX = function(options) {
 	document.ontouchstart = document.ontouchmove = document.ontouchend = function(e) {
 		return updateTouch(e);
 	};
-
-	if (window.opera) {
-		setInterval(function() {
-			s.send('junk');
-		}, 100);
-	}
 
 	function updateTouch(e) {
 		updateButtons(e);
