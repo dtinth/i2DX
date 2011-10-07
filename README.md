@@ -86,6 +86,42 @@ Then, `cd` to the __server__ directory and then
 
 to start the i2DX server on port 9876. Make sure the port is accessible from the device.
 
+Now navigate your client to the the server (see __Client Instructions__ below).
+
+If you press a button and the text changes to "Disconnected", then the key presses
+could not get through to OSCulator. Fix it and refresh the page and try again.
+
+Press the buttons and try out the scratches. The OSC messages should show up in OSCulator.
+Then in OSCulator, map the messages to the joystick events and enjoy!
+
+
+
+
+
+Server Instructions (Windows + autopy)
+--------------------------------------
+
+Download __Python__ from [python.org](http://python.org/download/). I use Python 2.7 as of time of writing.
+
+Then download and install [__AutoPy__](http://pypi.python.org/pypi/autopy/).
+
+Then download and install [__setuptools__](pypi.python.org/pypi/setuptools).
+
+Then open command prompt and run
+
+    C:\Python27\Scripts\easy_install tornado
+
+(replace `C:\Python27` with where you installed Python)
+
+And then go to the __server__ directory and run __server-windows-autopy.py__.
+
+Now navigate your client to the the server (see __Client Instructions__ below).
+Try pressing some keys, it should type something on your keyboard.
+
+With that set, open your game and map the pressed key to the corresponding input!
+
+
+
 
 
 Client Instructions
@@ -100,12 +136,7 @@ Then, use your device's web browser to navigate to
 
     http://[your ip]:9876/
 
-If everything works correctly, then it should say "Ready" at the top left. If you press a button
-and it changes to "Disconnected", then the key presses could not get through to OSCulator.
-Fix it and refresh the page and try again.
-
-Press the buttons and try out the scratches. The OSC messages should show up in OSCulator.
-Then in OSCulator, map the messages to the joystick events and enjoy!
+If everything works correctly, then it should say "Ready" at the top left.
 
 Additionally, you can also point another device to
 
@@ -140,8 +171,8 @@ Available Client Files
 
 
 
-Message maps
-------------
+OSC Message maps
+----------------
 
 * `/key/0`: Key 1
 * `/key/1`: Key 2
@@ -152,4 +183,19 @@ Message maps
 * `/key/6`: Key 7
 * `/key/8`: Scratch Up
 * `/key/9`: Scratch Down
+
+
+
+Keyboard maps
+-------------
+
+* q: Key 1
+* w: Key 2
+* e: Key 3
+* r: Key 4
+* t: Key 5
+* y: Key 6
+* u: Key 7
+* o: Scratch Up
+* p: Scratch Down
 
