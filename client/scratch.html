@@ -4,6 +4,9 @@
 <title>i2DX Scratch</title>
 <meta charset="UTF-8">
 <script src=client.js></script>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <link rel=stylesheet href=client.css>
 <script>
 window.onload = function() {
@@ -12,7 +15,7 @@ window.onload = function() {
 		turntable: 'sc',
 		turntableWidth: 0,
 		turntablePosition: 'left',
-		turntableMode: screen.width >= 640 && screen.height >= 640 ? 'angular' : 'linear',
+		turntableMode: screen.width >= 512 && screen.height >= 512 ? 'angular' : 'linear',
 		turntableSensitivity: 1,
 		turntableDisplay: 'scspin'
 	});
