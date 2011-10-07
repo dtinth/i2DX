@@ -49,8 +49,8 @@ Setup
 
 
 
-Usage
------
+Server Instructions (Mac OS X + OSCulator)
+------------------------------------------
 
 You have to install OSCulator, and then use Terminal to install Tornado and pyOSC Python modules.
 
@@ -61,15 +61,23 @@ Open OSCulator and set it to port 9000.
 
 Then, `cd` to the __server__ directory and then
 
-    python server.py
+    python server-mac-osculator.py
 
 to start the i2DX server on port 9876. Make sure the port is accessible from the device.
 
-Then, use your iPad or Android tablet to navigate to
+
+
+Client Instructions
+-------------------
+
+__Android Users:__ use Opera Mobile!
+
+__For Opera Mobile:__ before using, go to opera:config and search for WebSockets
+and __Enable WebSockets__ first, then save.
+
+Then, use your device's web browser to navigate to
 
     http://[your ip]:9876/
-
-__For Opera Mobile users:__ before that, go to opera:config and search for WebSockets and __Enable WebSockets__, then save.
 
 If everything works correctly, then it should say "Ready" at the top left. If you press a button
 and it changes to "Disconnected", then the key presses could not get through to OSCulator.
