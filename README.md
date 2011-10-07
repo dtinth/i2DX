@@ -19,16 +19,8 @@ It uses the following technologies:
 * Python
 	* [Tornado Web Server](http://www.tornadoweb.org/)
 	* [pyOSC](https://trac.v2.nl/wiki/pyOSC)
-* [OSCulator](http://www.osculator.net/)
-
-It only works with Mac OS X host for now due to its requirement of OSCulator.
-I first tried to make it work with Windows (using autopy),
-but the websocket server seems to have very long latancy. You press the button,
-it gets registered half a second later, thus made it unplayable.
-
-__Fork me!__ If anyone can port this to make it work on Windows (using any language),
-or Linux, I would appreciate it very much. :)
-
+* [OSCulator](http://www.osculator.net/) (Mac)
+* [autopy](http://www.autopy.org/) (Windows)
 
 
 
@@ -38,11 +30,10 @@ How it works
 The server serves the file to the device's web browser, which connects back to
 the server via WebSocket and send the press / release events.
 
-The WebSocket server then sends these events via OSC to OSCulator, which can then be used to
+__On Mac__: The WebSocket server then sends these events via OSC to OSCulator, which can then be used to
 map the received OSC events to joystick events and pass it to the game.
 
-(Note: I can't get it to work with [ixi-software's HID server](http://www.ixi-audio.net/content/body_backyard_python.html).
-If you can get it to work with it, please let me know).
+__On Windows__: The WebSocket server then use autopy to press the keys.
 
 
 
