@@ -1,10 +1,17 @@
-i2DX
-====
+![i2DX](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/i2DX.png)
+=======
 
 i2DX is a web-based IIDX controller for iPad / Opera Mobile. One night project 2011-10-04. [__Video demo__](http://www.youtube.com/watch?v=C3cZsZYK4Jo)
 
 You can use it with [StepMania 5](http://www.stepmania.com/), especially with the
 [beatmaniaIIDX15 theme](http://www.stepmania.com/forums/showthread.php?28308-SM5-beatmaniaIIDX15-theme-and-noteskin&p=195991#post195991).
+
+Because it is __web based__, you just need to run the server application on your Mac, and then point your device's
+web browser to the server (they must be on the same wireless network!).
+__No application installation needed on the device.__ (I particularly like this because I could borrow
+someone's device and use it as a scratch controller [see below] :P).
+
+--------------
 
 It uses the following technologies:
 
@@ -24,6 +31,7 @@ or Linux, I would appreciate it very much. :)
 
 
 
+
 How it works
 ------------
 
@@ -35,6 +43,19 @@ map the received OSC events to joystick events and pass it to the game.
 
 (Note: I can't get it to work with [ixi-software's HID server](http://www.ixi-audio.net/content/body_backyard_python.html).
 If you can get it to work with it, please let me know).
+
+
+
+The Controllers
+---------------
+
+![Main Controller](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/Main.png?x=1)
+
+![Alternate Controller (scratch on the right)](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/Alternate.png?x=1)
+
+![Scratch Controller for iPad](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/Scratch2.png?x=1)
+
+![Scratch Controller for Small Screens](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/Scratch.png?x=1)
 
 
 
