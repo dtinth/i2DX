@@ -1,6 +1,7 @@
 import tornado
 from tornado import websocket
 from os import path
+import socket
 
 class I2DXTopHandler(tornado.web.RequestHandler):
 	def get(self):
@@ -9,6 +10,7 @@ class I2DXTopHandler(tornado.web.RequestHandler):
 class I2DXWebSocket(websocket.WebSocketHandler):
 	def open(self):
 		self.write_message("Ready")
+		self.stream.socket.setsockopt(socket.SOL_TCP, socket.TCP_NODELAY, 0)
 		print "connection opened"
 
 	def on_message(self, message):
