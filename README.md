@@ -6,8 +6,8 @@ i2DX is a web-based IIDX controller for iPad / Opera Mobile. One night project 2
 You can use it with [StepMania 5](http://www.stepmania.com/), especially with the
 [beatmaniaIIDX15 theme](http://www.stepmania.com/forums/showthread.php?28308-SM5-beatmaniaIIDX15-theme-and-noteskin&p=195991#post195991).
 
-Because it is __web based__, you just need to run the server application on your Mac, and then point your device's
-web browser to the server (they must be on the same wireless network!).
+Because it is __web based__, you just need to run the server application on your computer,
+and then point your device's web browser to the server (they must be on the same wireless network!).
 __No application installation needed on the device.__ (I particularly like this because I could borrow
 someone's device and use it as a scratch controller [see below] :P).
 
@@ -53,11 +53,10 @@ The Controllers
 Setup
 -----
 
-* A Mac OS-based computer
-* An iPad or Android tablet device with Opera Mobile
+* A computer with beatmaniaIIDX simulator (I use StepMania 5 with IIDX15 theme)
+* An iPad or an Android tablet device with Opera Mobile
 * An additional device (iPad, iPhone, iPod touch, or almost any touch Android phones) (optional, used as a dedicated scratch controller)
 * A working WiFi connection (may or may not have internet access. In my opinion, ad-hoc is the best)
-* A beatmaniaIIDX simulator (I use StepMania 5 with IIDX15 theme)
 
 
 
@@ -121,13 +120,13 @@ Client Instructions
 __Android Users:__ use Opera Mobile!
 
 __For Opera Mobile:__ before using, go to opera:config and search for WebSockets
-and __Enable WebSockets__ first, then save.
+and __Enable WebSockets__ first, then tap __Save__.
 
 Then, use your device's web browser to navigate to
 
     http://[your ip]:9876/
 
-If everything works correctly, then it should say "Ready" at the top left.
+If everything works correctly, then it should say "Ready" at the top left corner.
 
 Additionally, you can also point another device to
 
@@ -156,6 +155,7 @@ Available Client Files
 
 * `http://[your ip]:9876/static/index.html` - __main controller__ with scratch on the left
 * `http://[your ip]:9876/static/alternate.html` - __main controller__ with scratch on the right
+* `http://[your ip]:9876/static/buttons.html` - __main controller__ with bigger buttons and no scratch, for use with tablets with smaller screen (like a Galaxy Tab)
 * `http://[your ip]:9876/static/scratch.html` - __scratch controller__
     * If you open your scratch controller in iPad, then you can rotate to scratch,
 	on other devices it use only up/down motion.
