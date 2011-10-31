@@ -1,45 +1,137 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>i2DX IIDX Controller</title>
-<meta charset="UTF-8">
-<script src=client.js></script>
-<link rel=stylesheet href=client.css>
-<script>
-window.onload = function() {
-
-	I2DX({
-		buttons: ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
-		buttonThreshould: 25,
-		initButton: function(el, i) {
-			el.style.left = (310 + 80 * i) + 'px';
-			el.style.top = (320 - 240 * (i%2)) + 'px';
-		},
-		turntable: 'sc',
-		turntableWidth: 220,
-		turntablePosition: 'left',
-		turntableMode: 'linear',
-		turntableSensitivity: 1
-	});
-
-};
-</script>
+<title>i2DX Controller Settings</title>
 <style>
-	.up, .down { width: 120px; height: 200px; }
-	h1 { position: absolute; bottom: 0; right: 30px; }
-	.sc { top: 0; left: 0; bottom: 0; width: 220px; }
-	#status { top: 20px; left: 250px;  }
+@import "client.css";
+.option {
+	position: relative;
+	font: 14px/24px Helvetica, Arial, sans-serif;
+	margin-bottom: 1.3ex;
+}
+.option-label {
+	position: absolute;
+	top: 0; left: 0; width: 10em;
+}
+.option-options {
+	position: relative;
+	margin-left: 10em;
+}
+.option-option {
+	display: inline-block;
+	height: 25px; padding: 0 5px;
+	margin-top: -1px; margin-left: -1px;
+	border: 1px solid #454443;
+	color: #8b8685;
+	background: #252423;
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+}
+@media screen and (min-width: 640px) {
+	.option {
+		font-size: 18px;
+		line-height: 40px;
+	}
+	.option-option { height: 40px; padding: 0 12px; }
+}
+.option-selected {
+	background: #454443;
+	color: #e9e8e7;
+	border-color: #555453; z-index: 2;
+}
+#launch {
+	display: block;
+	text-align: center;
+	color: #ffc;
+	padding: 3px;
+	font-size: 20px;
+	font-weight: bold;
+}
 </style>
-</head>
-<body>
+<div id="options">
+</div>
+<a href="javascript://i2DX" id="launch">Launch i2DX!</a>
+<script>
 
-<h1>Powered by HTML5+WebSockets</h1>
-<div id="a"></div>
-<div id="b"></div>
-<div id="c"></div>
-<div id="d"></div>
-<div id="e"></div>
-<div id="f"></div>
-<div id="g"></div>
-<div id="sc"></div>
-<div id="status">Connecting to i2DX Server...</div>
+function C(c, n) {
+	var el = document.createElement(n || 'div');
+	el.className = c;
+	return el;
+}
+function Option(id, title, options) {
+	this._element = C('option');
+	this._label = C('option-label');
+	this._container = C('option-options');
+	this._options = [];
+	for (var i = 0; i < options.length; i ++) {
+		this._options[i] = function() {
+			var c = new OptionChoice(options[i]);
+			c.renderTo(this._container);
+			c.onclick = function(that) {
+				return function(e) {
+					that.select(c);
+				};
+			}(this);
+			return c;
+		}.call(this);
+	}
+	this._label.innerHTML = title;
+	this._element.appendChild(this._label);
+	this._element.appendChild(this._container);
+	this.select(this._options[0]);
+	document.getElementById('options').appendChild(this._element);
+}
+Option.prototype = {
+	select: function(opt) {
+		if (this._selected) this._selected.setSelected(false);
+		this._selected = opt;
+		this._selected.setSelected(true);
+	},
+	getSelected: function() {
+		return this._selected;
+	}
+};
+function OptionChoice(data) {
+	this._element = C('option-option', 'a');
+	this._element.href = 'javascript://i2DX';
+	this._element.innerHTML = data[1];
+	this._element.onclick = function(that) {
+		return function(e) {
+			that.onclick(e);
+		};
+	}(this);
+	this._value = data[0];
+}
+OptionChoice.prototype = {
+	renderTo: function(el) {
+		el.appendChild(this._element);
+	},
+	onclick: function(e) {
+	},
+	getValue: function() {
+		return this._value;
+	},
+	setSelected: function(s) {
+		this._element.className = 'option-option ' + (s ? 'option-selected' : 'option-deselected');
+	}
+};
+window.onload = function() {
+	var hard = new Option('hard', 'Hard Mode', [
+		['off', 'Off'],
+		['on', 'On']
+	]);
+	var mode = new Option('mode', 'Controller Mode', [
+		['main', 'Scratch on Left'],
+		['alternate', 'Scratch on Right'],
+		['scratch', 'Scratch Only'],
+		['buttons', 'Buttons Only']
+	]);
+	document.getElementById('launch').onclick = function() {
+		var params = [];
+		if (hard.getSelected().getValue() == 'on') {
+			params.push('hardMode=on');
+		}
+		location.href = mode.getSelected().getValue() + '.html' + (params.length > 0 ? '?' : '') + params.join('&');
+	};
+};
+
+</script>
