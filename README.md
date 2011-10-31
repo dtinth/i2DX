@@ -126,13 +126,12 @@ Then, use your device's web browser to navigate to
 
     http://[your ip]:9876/
 
+You will see a launcher. Set the settings and click Launch i2DX.
+
 If everything works correctly, then it should say "Ready" at the top left corner.
 
-Additionally, you can also point another device to
-
-    http://[your ip]:9876/static/scratch.html
-
-to use it as a dedicated scratch controller. I borrowed my friend's iPod Touch for this.
+You can bring another device to use it as a dedicated scratch controller.
+I borrowed my friend's iPod Touch for this.
 He also has a mat for his iPod so that it doesn't slip when he plays jubeat or other music
 games on his iPod. Just telling you a story. ;p
 
@@ -141,24 +140,17 @@ can borrow another iPad, then you can use it as a scratch controller! On other d
 only supports up / down movement, but it can be used to make the buttons and the turntable farther.
 
 Now that if you have a scratch controller, you may not want it on the main controller anymore,
-you can move the scratch area of the main controller to the right, by navigating to
-
-    http://[your ip]:9876/static/alternate.html
-
-on your main controller device.
+you can move the scratch area of the main controller to the right.
 
 
 
+Hard Mode
+---------
 
-Available Client Files
-----------------------
+In normal mode, you can slide between buttons.
+On real machines / controllers, you might not be able to do that, so in hard
+mode, you cannot slide between buttons.
 
-* `http://[your ip]:9876/static/index.html` - __main controller__ with scratch on the left
-* `http://[your ip]:9876/static/alternate.html` - __main controller__ with scratch on the right
-* `http://[your ip]:9876/static/buttons.html` - __main controller__ with bigger buttons and no scratch, for use with tablets with smaller screen (like a Galaxy Tab)
-* `http://[your ip]:9876/static/scratch.html` - __scratch controller__
-    * If you open your scratch controller in iPad, then you can rotate to scratch,
-	on other devices it use only up/down motion.
 
 
 
