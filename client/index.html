@@ -1,30 +1,42 @@
 <!DOCTYPE html>
 <title>i2DX Controller Settings</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <style>
 @import "client.css";
 .option {
 	position: relative;
 	font: 14px/24px Helvetica, Arial, sans-serif;
-	margin-bottom: 1.3ex;
+	margin-bottom: 1.5ex;
 }
 .option-label {
 	position: absolute;
-	top: 0; left: 0; width: 10em;
+	top: 0; left: 0; width: 8em;
+	text-align: right;
 }
 .option-options {
 	position: relative;
-	margin-left: 10em;
+	margin-left: 9em;
 }
 .option-option {
 	display: inline-block;
 	height: 25px; padding: 0 5px;
 	margin-top: -1px; margin-left: -1px;
 	border: 1px solid #454443;
-	color: #8b8685;
+	color: #ccc;
 	background: #252423;
 	text-decoration: none;
 	position: relative;
 	z-index: 1;
+}
+.option-desc {
+	margin-left: 9em;
+	line-height: 1.3em;
+	margin-top: 0.5ex;
+	color: #8b8685;
+}
+.option-desc span {
+	font-size: 0.9em;
+	font-style: italic;
 }
 @media screen and (min-width: 640px) {
 	.option {
@@ -46,7 +58,12 @@
 	font-size: 20px;
 	font-weight: bold;
 }
+h1 {
+	margin: 0.8ex 0 1ex;
+	text-align: center;
+}
 </style>
+<h1>i2DX Launcher</h1>
 <div id="options">
 </div>
 <a href="javascript://i2DX" id="launch">Launch i2DX!</a>
@@ -57,7 +74,7 @@ function C(c, n) {
 	el.className = c;
 	return el;
 }
-function Option(id, title, options) {
+function Option(id, title, options, desc) {
 	this._element = C('option');
 	this._label = C('option-label');
 	this._container = C('option-options');
@@ -77,6 +94,11 @@ function Option(id, title, options) {
 	this._label.innerHTML = title;
 	this._element.appendChild(this._label);
 	this._element.appendChild(this._container);
+	if (desc) {
+		this._description = C('option-desc');
+		this._description.innerHTML = '<span>' + desc + '</span>';
+		this._element.appendChild(this._description);
+	}
 	this.select(this._options[0]);
 	document.getElementById('options').appendChild(this._element);
 }
@@ -115,16 +137,16 @@ OptionChoice.prototype = {
 	}
 };
 window.onload = function() {
-	var hard = new Option('hard', 'Hard Mode', [
-		['off', 'Off'],
-		['on', 'On']
-	]);
 	var mode = new Option('mode', 'Controller Mode', [
 		['main', 'Scratch on Left'],
 		['alternate', 'Scratch on Right'],
 		['scratch', 'Scratch Only'],
 		['buttons', 'Buttons Only']
 	]);
+	var hard = new Option('hard', 'Hard Mode', [
+		['off', 'Off'],
+		['on', 'On']
+	], 'In hard mode, you can\'t slide between buttons.');
 	document.getElementById('launch').onclick = function() {
 		var params = [];
 		if (hard.getSelected().getValue() == 'on') {
