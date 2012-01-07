@@ -61,6 +61,7 @@ var I2DX = function(options) {
 	}
 	ButtonHandler.prototype = new BaseClass().implement({
 		canHandle: function(c) {
+			if (options.adaptive) return true;
 			var el = this._element;
 			var t = el.offsetTop,
 				l = el.offsetLeft,
@@ -70,6 +71,22 @@ var I2DX = function(options) {
 			t -= th; l -= th;
 			r += th; b += th;
 			return (l <= c.pageX && c.pageX <= r && t <= c.pageY && c.pageY <= b);
+		},
+		scoreTouch: function(c) {
+			var el = this._element;
+			var y = el.offsetTop  + el.offsetHeight / 2,
+				x = el.offsetLeft + el.offsetWidth  / 2;
+			return Math.pow(c.pageX - x, 2) + Math.pow(c.pageY - y, 2);
+		},
+		hint: function(c) {
+			var el = this._element;
+			var y = el.offsetTop  + el.offsetHeight / 2,
+				x = el.offsetLeft + el.offsetWidth  / 2,
+				ty = c.pageY, tx = c.pageX,
+				dy = (ty - y) / 10, dx = (tx - x) / 10;
+			el.style.top = (el.offsetTop + dy) + 'px';
+			el.style.left = (el.offsetLeft + dx) + 'px';
+			return this;
 		},
 		createTouchHandler: function() {
 			return new ButtonTouchHandler(this);
@@ -102,13 +119,16 @@ var I2DX = function(options) {
 		},
 		onrelease: function(c) {
 			this._main.up();
+		},
+		getHandler: function() {
+			return this._main;
 		}
 	});
 
 	if (options.buttons) {
 		options.buttons.forEach(function(id, i) {
 			var el = document.getElementById(id);
-			availableHandlers.push(new ButtonHandler(el, i));
+			availableHandlers.push(new ButtonHandler(el, el.getAttribute('data-button') || i));
 		});
 	}
 	
@@ -119,6 +139,7 @@ var I2DX = function(options) {
 		this._state = 0;
 		this._rotation = 0;
 		this._displayAngle = 0;
+		this._menuAngle = 0;
 		this._interval = setInterval(function(that) {
 			return function() {
 				that.doTurntableUpdate();
@@ -155,6 +176,7 @@ var I2DX = function(options) {
 			var max = this.getMaxRotation();
 			var min = this.getMinRotation();
 			this._rotation += delta;
+			this._menuAngle += delta;
 			if (this._rotation > max) this._rotation = max;
 			else if (this._rotation < -max) this._rotation = -max;
 			if (this._rotation >= min) this._state = 9;
@@ -164,7 +186,8 @@ var I2DX = function(options) {
 		doTurntableUpdate: function() {
 			this._rotation *= 0.99;
 			if (Math.abs(this._rotation) < this.getMinRotation()) this._state = 0;
-			this._displayAngle += Math.max(Math.abs(this._rotation) - 150, 0) * (this._rotation < 0 ? -1 : 1) * 0.1;
+			var angleDelta = Math.max(Math.abs(this._rotation) - 150, 0) * (this._rotation < 0 ? -1 : 1) * 0.1;
+			this._displayAngle += angleDelta;
 			if (this._display) {
 				this._display.style.WebkitTransform = 'translateZ(0) rotate(' + this._displayAngle + 'deg)';
 			}
@@ -178,7 +201,7 @@ var I2DX = function(options) {
 	}
 	TurntableTouchHandler.prototype = new BaseClass().implement({
 		canHandle: function(c) {
-			return this._main.canHandle(c);
+			return options.turntableMode == 'angular' || this._main.canHandle(c);
 		},
 		getNewPosition: function(c) {
 			if (options.turntableMode == 'angular') {
@@ -201,12 +224,15 @@ var I2DX = function(options) {
 			var newPosition = this.getNewPosition(c);
 			if (this._lastPosition != null) {
 				var delta = newPosition - this._lastPosition;
-				delta *= (options.turntableMode == 'angular' ? 2 : 1);
+				delta *= (options.turntableMode == 'angular' ? 3 : 1);
 				this._main.commitDelta(delta * Math.abs(delta));
 			}
 			this._lastPosition = newPosition;
 		},
 		onrelease: function(c) {
+		},
+		getHandler: function() {
+			return this._main;
 		}
 	});
 	
@@ -219,42 +245,75 @@ var I2DX = function(options) {
 	}
 	
 	function isHardMode() {
-		return options.hardMode;
+		return options.hardMode || options.adaptive;
 	}
 	function TouchHandler() {
-		this._handler = null;
-		this._invalidated = false;
+		this._handlers = null;
 	}
+	TouchHandler.prototype.getBestHandler = function(c) {
+		var bestScore, bestHandler;
+		for (var i = 0; i < availableHandlers.length; i ++) {
+			var score = availableHandlers[i].scoreTouch(c);
+			if (bestScore == null || score < bestScore) {
+				bestScore = score;
+				bestHandler = availableHandlers[i];
+			}
+		}
+		return bestHandler.hint(c).createTouchHandler();
+	};
 	TouchHandler.prototype.update = function(c) {
-		if (this._invalidated) return;
-		if (this._handler == null) {
-			for (var i = 0; i < availableHandlers.length; i ++) {
-				if (availableHandlers[i].canHandle(c)) {
-					this._handler = availableHandlers[i].createTouchHandler();
+		if (this._handlers == null) {
+			if (options.adaptive) {
+				this._handlers = [this.getBestHandler(c)];
+			} else {
+				this._handlers = [];
+				for (var i = 0; i < availableHandlers.length; i ++) {
+					if (availableHandlers[i].canHandle(c)) {
+						this._handlers.push(availableHandlers[i].createTouchHandler());
+					}
+				}
+			}
+		} else if (!isHardMode() && !options.adaptive) {
+			var hasTurntable = false;
+			for (var j = 0; j < this._handlers.length; j ++) {
+				if (this._handlers[j].getHandler() instanceof TurntableHandler) {
+					hasTurntable = true;
 					break;
 				}
 			}
-		}
-		if (this._handler == null && isHardMode()) {
-			this._invalidated = true;
-		}
-		if (this._handler != null) {
-			if (this._handler.canHandle(c)) {
-				this._handler.update(c);
-			} else {
-				this._handler.onrelease(c);
-				delete this._handler;
-				if (isHardMode()) {
-					this._invalidated = true;
+			if (!hasTurntable) {
+				for (var i = 0; i < availableHandlers.length; i ++) {
+					if (availableHandlers[i].canHandle(c)) {
+						var used = false;
+						for (var j = 0; j < this._handlers.length; j ++) {
+							if (this._handlers[j].getHandler() == availableHandlers[i]) {
+								used = true;
+								break;
+							}
+						}
+						if (!used) {
+							this._handlers.push(availableHandlers[i].createTouchHandler());
+						}
+					}
 				}
+			}
+		}
+		for (var i = 0; i < this._handlers.length; i ++) {
+			if (this._handlers[i].canHandle(c)) {
+				this._handlers[i].update(c);
+			} else {
+				this._handlers[i].onrelease(c);
+				this._handlers.splice(i, 1);
+				i --;
 			}
 		}
 	};
 	TouchHandler.prototype.onrelease = function(c) {
-		if (this._handler != null) {
-			this._handler.onrelease(c);
-			delete this._handler;
+		if (this._handlers == null) return;
+		for (var i = 0; i < this._handlers.length; i ++) {
+			this._handlers[i].onrelease(c);
 		}
+		this._handlers = null;
 	};
 
 	var updateTouches = (function() {

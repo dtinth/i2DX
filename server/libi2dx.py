@@ -15,9 +15,9 @@ class I2DXWebSocket(websocket.WebSocketHandler):
 
 	def on_message(self, message):
 		if message[0] == '1':
-			self.toggle_key(message[1], True)
+			self.toggle_key(message[1:], True)
 		elif message[0] == '0':
-			self.toggle_key(message[1], False)
+			self.toggle_key(message[1:], False)
 
 	def on_close(self):
 		print "closed"

@@ -3,22 +3,24 @@
 <head>
 <title>i2DX IIDX Controller</title>
 <meta charset="UTF-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <script src=client.js></script>
 <link rel=stylesheet href=client.css>
 <script>
 window.onload = function() {
 
 	I2DX({
-		buttons: ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
+		buttons: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'start', 'select'],
 		buttonThreshould: 25,
 		initButton: function(el, i) {
-			el.style.left = (90 + 80 * i) + 'px';
-			el.style.top = (320 - 240 * (i%2)) + 'px';
+			if (i >= 7) return;
+			el.style.right = (310 + 80 * (7 - i)) + 'px';
+			el.style.bottom = (108 + 240 * (i%2)) + 'px';
 		},
 		turntable: 'sc',
 		turntableWidth: 220,
 		turntablePosition: 'right',
-		turntableMode: 'linear',
+		turntableMode: 'angular',
 		turntableSensitivity: 1
 	});
 
@@ -26,20 +28,31 @@ window.onload = function() {
 </script>
 <style>
 	.up, .down { width: 120px; height: 200px; }
-	h1 { position: absolute; bottom: 0; right: 250px; }
+	h1 { position: absolute; bottom: 0; left: 30px; }
 	.sc { top: 0; right: 0; bottom: 0; width: 220px; }
-	#status { top: 20px; left: 30px;  }
+	#status { top: 20px; right: 250px;  }
+	#extras { display: none; }
+	@media (max-height: 768px) {
+		#extras { display: block; }
+		#extras div { top: auto; height: 60px; line-height: 60px; text-align: center; bottom: 656px; }
+		#start { left: 10px; }
+		#select { left: 160px; }
+	}
 </style>
 </head>
 <body>
 
 <h1>Powered by HTML5+WebSockets</h1>
-<div id="a"></div>
-<div id="b"></div>
-<div id="c"></div>
-<div id="d"></div>
-<div id="e"></div>
-<div id="f"></div>
-<div id="g"></div>
+<div id="a" data-button="0"></div>
+<div id="b" data-button="1"></div>
+<div id="c" data-button="2"></div>
+<div id="d" data-button="3"></div>
+<div id="e" data-button="4"></div>
+<div id="f" data-button="5"></div>
+<div id="g" data-button="6"></div>
 <div id="sc"></div>
+<div id="extras">
+	<div id="start" data-button="start">start</div>
+	<div id="select" data-button="select">select</div>
+</div>
 <div id="status">Connecting to i2DX Server...</div>

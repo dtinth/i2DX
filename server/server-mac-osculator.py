@@ -13,7 +13,10 @@ class I2DXWebSocketOSC(libi2dx.I2DXWebSocket):
 		else:
 			state = 0.0
 		msg.append(state)
-		client.send(msg)
+		try:
+			client.send(msg)
+		except OSC.OSCClientError:
+			print "cannot send OSC message"
 
 if __name__ == "__main__":
 	libi2dx.serve(I2DXWebSocketOSC)
