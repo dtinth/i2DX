@@ -88,8 +88,21 @@ Then in OSCulator, map the messages to the joystick events and enjoy!
 
 
 
-Server Instructions (Windows + autopy)
---------------------------------------
+Server Instructions (Windows + autopy) (Easy)
+---------------------------------------------
+
+Just download [i2DX-Windows-1923d3e.zip](https://github.com/downloads/dtinth/i2DX/i2DX-Windows-1923d3e.zip),
+extract, and run __i2DX.exe__.
+
+Now navigate your client to the the server (see __Client Instructions__ below).
+Try pressing some keys, it should type something on your keyboard.
+
+With that set, open your game and map the pressed key to the corresponding input!
+
+
+
+Server Instructions (Windows + autopy) (Advanced)
+-------------------------------------------------
 
 Download __Python__ from [python.org](http://python.org/download/). I use Python 2.7 as of time of writing.
 
