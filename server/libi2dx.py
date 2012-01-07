@@ -2,6 +2,7 @@ import tornado
 from tornado import websocket
 from os import path
 import socket
+import sys
 
 class I2DXTopHandler(tornado.web.RequestHandler):
 	def get(self):
@@ -23,7 +24,7 @@ class I2DXWebSocket(websocket.WebSocketHandler):
 		print "closed"
 
 def serve(handler):
-	clientdir = path.join(path.dirname(path.dirname(path.abspath(__file__))), 'client')
+	clientdir = path.join(path.dirname(path.dirname(path.abspath(sys.argv[0]))), 'client')
 	application = tornado.web.Application([
 		(r"/", I2DXTopHandler),
 		(r"/ws", handler),
