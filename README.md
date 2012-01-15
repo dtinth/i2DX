@@ -1,4 +1,3 @@
-
 * __Scroll Down__ for installation instructions (Windows and Mac OS X).
 * Go to [__Download Page__](https://github.com/dtinth/i2DX/downloads) to download latest version of i2DX.
 
@@ -7,8 +6,12 @@
 
 &nbsp;
 
+&nbsp;
 
-![i2DX](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/i2DX.png)
+&nbsp;
+
+
+i2DX
 =======
 
 i2DX is a web-based IIDX controller for iPad / Opera Mobile. One night project 2011-10-04. [__Video demo__](http://www.youtube.com/watch?v=C3cZsZYK4Jo)
