@@ -88,17 +88,19 @@ Then in OSCulator, map the messages to the joystick events and enjoy!
 
 
 
-Server Instructions (Windows + autopy) (Easy)
+<span id="easy-installation-windows">Server Instructions (Windows + autopy) (Easy)</span>
 ---------------------------------------------
 
-Just download [i2DX-Windows-1923d3e.zip](https://github.com/downloads/dtinth/i2DX/i2DX-Windows-1923d3e.zip),
-extract, and run __i2DX.exe__.
+Just download the latest [i2DX-Windows-abcdefg.zip](https://github.com/dtinth/i2DX/downloads),
+extract, go to __server__, and run __server-windows-autopy.exe__.
 
-Now navigate your client to the the server (see __Client Instructions__ below).
-Try pressing some keys, it should type something on your keyboard.
+On your device, open a web browser and go to i2DX (see __Client Instructions__ below).
+Try pressing the buttons, it should type something on your keyboard.
 
-With that set, open your game and map the pressed key to the corresponding input!
+__Then open your game, and set the keyboard config, and enjoy!!__
 
+Or if you want to change the key when the button is being pressed,
+edit `key-config.txt`. (Do not leave any blank line.)
 
 
 Server Instructions (Windows + autopy) (Advanced)
@@ -127,7 +129,7 @@ With that set, open your game and map the pressed key to the corresponding input
 
 
 
-Client Instructions
+<span id="client-instructions">Client Instructions</span>
 -------------------
 
 __Android Users:__ use Opera Mobile!
@@ -182,16 +184,19 @@ OSC Message maps
 
 
 
-Keyboard maps
--------------
+<span id="windows-keyboard-maps">Keyboard maps (Windows)</span>
+-----------------------
 
-* q: Key 1
-* w: Key 2
-* e: Key 3
-* r: Key 4
-* t: Key 5
-* y: Key 6
-* u: Key 7
-* o: Scratch Up
-* p: Scratch Down
+* `m`: Key 1
+* `k`: Key 2
+* `,`: Key 3
+* `l`: Key 4
+* `.`: Key 5
+* `;`: Key 6
+* `/`: Key 7
+* `[`: Scratch Up
+* `]`: Scratch Down
+* `o`: Start
+* `p`: Select
 
+You can change key mappings in `server\key-config.txt`.
