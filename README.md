@@ -184,8 +184,7 @@ OSC Message maps
 
 
 
-<span id="windows-keyboard-maps">Keyboard maps (Windows)</span>
------------------------
+<h2 id="windows-keyboard-maps">Keyboard maps (Windows)</h2>
 
 * `m`: Key 1
 * `k`: Key 2
