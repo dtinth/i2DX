@@ -1,3 +1,13 @@
+
+* __Scroll Down__ for installation instructions (Windows and Mac OS X).
+* Go to [__Download Page__](https://github.com/dtinth/i2DX/downloads) to download latest version of i2DX.
+
+
+&nbsp;
+
+&nbsp;
+
+
 ![i2DX](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/i2DX.png)
 =======
 
@@ -184,7 +194,8 @@ OSC Message maps
 
 
 
-<h2 id="windows-keyboard-maps">Keyboard maps (Windows)</h2>
+Keyboard maps (Windows)
+-----------------------
 
 * `m`: Key 1
 * `k`: Key 2
