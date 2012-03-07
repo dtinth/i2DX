@@ -4,6 +4,13 @@
 
 &nbsp;
 
+
+__Video Demos__
+
+* [1 iPad + 1 iPod Touch + StepMania](http://www.youtube.com/watch?v=C3cZsZYK4Jo) / Ristaccia
+* [2 iPads + StepMania](http://www.youtube.com/watch?v=f7GBGOO5DRw&feature=channel) / garden
+* [2 iPads v.s. Home Controller + Lunatic Rave 2](http://www.youtube.com/watch?v=RfJ5FoVZiBs) / being torn the sky
+
 &nbsp;
 
 &nbsp;
@@ -14,10 +21,11 @@
 i2DX
 =======
 
-i2DX is a web-based IIDX controller for iPad / Opera Mobile. One night project 2011-10-04. [__Video demo__](http://www.youtube.com/watch?v=C3cZsZYK4Jo)
+i2DX is a web-based IIDX controller for iPad / Opera Mobile. One night project 2011-10-04.
 
 You can use it with [StepMania 5](http://www.stepmania.com/), especially with the
 [beatmaniaIIDX15 theme](http://www.stepmania.com/forums/showthread.php?28308-SM5-beatmaniaIIDX15-theme-and-noteskin&p=195991#post195991).
+You can also use it with Lunatic Rave 2, or other sims as well.
 
 Because it is __web based__, you just need to run the server application on your computer,
 and then point your device's web browser to the server (they must be on the same wireless network!).
