@@ -10,6 +10,7 @@ __Video Demos__
 * [1 iPad + 1 iPod Touch + StepMania](http://www.youtube.com/watch?v=C3cZsZYK4Jo) / Ristaccia
 * [2 iPads + StepMania](http://www.youtube.com/watch?v=f7GBGOO5DRw&feature=channel) / garden
 * [2 iPads v.s. Home Controller + Lunatic Rave 2](http://www.youtube.com/watch?v=RfJ5FoVZiBs) / being torn the sky
+* [1 iPad](http://www.youtube.com/watch?v=tiuCW311GEA) / Elisha
 
 &nbsp;
 
