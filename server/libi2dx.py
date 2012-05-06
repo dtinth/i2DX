@@ -9,6 +9,10 @@ class I2DXTopHandler(tornado.web.RequestHandler):
 		self.redirect('static/index.html')
 
 class I2DXWebSocket(websocket.WebSocketHandler):
+
+	def allow_draft76(true):
+		return True
+
 	def open(self):
 		self.write_message("Ready")
 		self.stream.socket.setsockopt(socket.SOL_TCP, socket.TCP_NODELAY, 0)
