@@ -33,5 +33,6 @@ def serve(handler):
 		(r"/", I2DXTopHandler),
 		(r"/ws", handler),
 	], static_path=clientdir)
+	print "listening on port 9876"
 	application.listen(9876)
 	tornado.ioloop.IOLoop.instance().start()

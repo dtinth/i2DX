@@ -1,10 +1,32 @@
-![i2DX](http://dl.dropbox.com/u/25097375/Documentation%20Images/i2DX/i2DX.png)
+* __Scroll Down__ for installation instructions (Windows and Mac OS X).
+* Go to [__Download Page__](https://github.com/dtinth/i2DX/downloads) to download latest version of i2DX.
+
+
+&nbsp;
+
+
+__Video Demos__
+
+* [1 iPad + 1 iPod Touch + StepMania](http://www.youtube.com/watch?v=C3cZsZYK4Jo) / Ristaccia
+* [2 iPads + StepMania](http://www.youtube.com/watch?v=f7GBGOO5DRw&feature=channel) / garden
+* [2 iPads v.s. Home Controller + Lunatic Rave 2](http://www.youtube.com/watch?v=RfJ5FoVZiBs) / being torn the sky
+* [1 iPad](http://www.youtube.com/watch?v=tiuCW311GEA) / Elisha
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+
+i2DX
 =======
 
-i2DX is a web-based IIDX controller for iPad / Opera Mobile. One night project 2011-10-04. [__Video demo__](http://www.youtube.com/watch?v=C3cZsZYK4Jo)
+i2DX is a web-based IIDX controller for iPad / Opera Mobile. One night project 2011-10-04.
 
 You can use it with [StepMania 5](http://www.stepmania.com/), especially with the
 [beatmaniaIIDX15 theme](http://www.stepmania.com/forums/showthread.php?28308-SM5-beatmaniaIIDX15-theme-and-noteskin&p=195991#post195991).
+You can also use it with Lunatic Rave 2, or other sims as well.
 
 Because it is __web based__, you just need to run the server application on your computer,
 and then point your device's web browser to the server (they must be on the same wireless network!).
@@ -88,17 +110,19 @@ Then in OSCulator, map the messages to the joystick events and enjoy!
 
 
 
-Server Instructions (Windows + autopy) (Easy)
+<span id="easy-installation-windows">Server Instructions (Windows + autopy) (Easy)</span>
 ---------------------------------------------
 
-Just download [i2DX-Windows-1923d3e.zip](https://github.com/downloads/dtinth/i2DX/i2DX-Windows-1923d3e.zip),
-extract, and run __i2DX.exe__.
+Just download the latest [i2DX-Windows-abcdefg.zip](https://github.com/dtinth/i2DX/downloads),
+extract, go to __server__, and run __server-windows-autopy.exe__.
 
-Now navigate your client to the the server (see __Client Instructions__ below).
-Try pressing some keys, it should type something on your keyboard.
+On your device, open a web browser and go to i2DX (see __Client Instructions__ below).
+Try pressing the buttons, it should type something on your keyboard.
 
-With that set, open your game and map the pressed key to the corresponding input!
+__Then open your game, and set the keyboard config, and enjoy!!__
 
+Or if you want to change the key when the button is being pressed,
+edit `key-config.txt`. (Do not leave any blank line.)
 
 
 Server Instructions (Windows + autopy) (Advanced)
@@ -127,7 +151,7 @@ With that set, open your game and map the pressed key to the corresponding input
 
 
 
-Client Instructions
+<span id="client-instructions">Client Instructions</span>
 -------------------
 
 __Android Users:__ use Opera Mobile!
@@ -182,16 +206,19 @@ OSC Message maps
 
 
 
-Keyboard maps
--------------
+Keyboard maps (Windows)
+-----------------------
 
-* q: Key 1
-* w: Key 2
-* e: Key 3
-* r: Key 4
-* t: Key 5
-* y: Key 6
-* u: Key 7
-* o: Scratch Up
-* p: Scratch Down
+* `m`: Key 1
+* `k`: Key 2
+* `,`: Key 3
+* `l`: Key 4
+* `.`: Key 5
+* `;`: Key 6
+* `/`: Key 7
+* `[`: Scratch Up
+* `]`: Scratch Down
+* `o`: Start
+* `p`: Select
 
+You can change key mappings in `server\key-config.txt`.

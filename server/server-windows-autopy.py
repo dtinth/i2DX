@@ -1,19 +1,12 @@
-
+import sys
 import libi2dx
+from os import path
 from autopy import key
 
-keys = {
-	'0': 'q',
-	'1': 'w',
-	'2': 'e',
-	'3': 'r',
-	'4': 't',
-	'5': 'y',
-	'6': 'u',
-	'7': 'i',
-	'8': 'o',
-	'9': 'p'
-}
+keys = {}
+for line in open(path.join(path.dirname(sys.argv[0]), 'key-config.txt'), 'r').read().split('\n'):
+	data = line.split()
+	keys[data[0]] = data[1]
 
 class I2DXWebSocketAutoPy(libi2dx.I2DXWebSocket):
 	def toggle_key(self, key_id, state):
