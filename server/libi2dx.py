@@ -23,7 +23,7 @@ class I2DXComponentsHandler(tornado.web.RequestHandler):
 		self.set_header('Content-Type', 'text/javascript')
 		for list in (_glob('layouts', '*.js'), _glob('skins', '*', 'skin.js')):
 			for file in list:
-				self.write('document.write("<scr" + "ipt src=\\"%s\\"></scr" + "ipt>");\n' % ('/static' + file))
+				self.write('document.write("<scr" + "ipt src=\\"%s\\"></scr" + "ipt>");\n' % ('/static' + file.replace('\\', '/')))
 
 class I2DXWebSocket(websocket.WebSocketHandler):
 
