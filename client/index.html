@@ -2,20 +2,24 @@
 <title>i2DX Controller Settings</title>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <style>
-@import "client.css";
+
+body { background: #353433; font: 15px Verdana; color: #e9e8e7; }
+h1 { font: bold 40px Helvetica; color: #8b8685; }
+
 .option {
 	position: relative;
 	font: 14px/24px Helvetica, Arial, sans-serif;
 	margin-bottom: 1.5ex;
+	clear: left;
 }
 .option-label {
 	position: absolute;
-	top: 0; left: 0; width: 8em;
+	top: 0; left: 0; width: 7em;
 	text-align: right;
 }
 .option-options {
 	position: relative;
-	margin-left: 9em;
+	margin-left: 8em;
 }
 .option-option {
 	display: inline-block;
@@ -27,6 +31,17 @@
 	text-decoration: none;
 	position: relative;
 	z-index: 1;
+}
+.option-block .option-option {
+	display: block;
+}
+.option-block .option-options {
+	float: left;
+	margin-bottom: 1.5ex;
+}
+.option-option small {
+	font-size: 14px;
+	color: #8b8685;
 }
 .option-desc {
 	margin-left: 9em;
@@ -50,6 +65,9 @@
 	color: #e9e8e7;
 	border-color: #555453; z-index: 2;
 }
+.option-disabled, .option-disabled small {
+	color: #454443;
+}
 #launch {
 	display: block;
 	text-align: center;
@@ -63,6 +81,9 @@ h1 {
 	text-align: center;
 }
 </style>
+<script src=js/i2DX.js></script>
+<script src=/addons></script>
+
 <h1>i2DX Launcher</h1>
 <div id="options">
 </div>
@@ -74,18 +95,24 @@ function C(c, n) {
 	el.className = c;
 	return el;
 }
-function Option(id, title, options, desc) {
+
+function Option(title, options, desc) {
 	this._element = C('option');
 	this._label = C('option-label');
 	this._container = C('option-options');
 	this._options = [];
+	this._optionMap = {};
 	for (var i = 0; i < options.length; i ++) {
-		this._options[i] = function() {
+		this._options[i] = this._optionMap[options[i][0]] = function() {
 			var c = new OptionChoice(options[i]);
 			c.renderTo(this._container);
 			c.onclick = function(that) {
 				return function(e) {
-					that.select(c);
+					if (that.select(c)) {
+						if (that.onchange) {
+							that.onchange(c);
+						}
+					}
 				};
 			}(this);
 			return c;
@@ -99,19 +126,40 @@ function Option(id, title, options, desc) {
 		this._description.innerHTML = '<span>' + desc + '</span>';
 		this._element.appendChild(this._description);
 	}
-	this.select(this._options[0]);
+	this.ensureSelection();
 	document.getElementById('options').appendChild(this._element);
 }
 Option.prototype = {
 	select: function(opt) {
+		if (!opt.isEnabled()) return false;
 		if (this._selected) this._selected.setSelected(false);
 		this._selected = opt;
 		this._selected.setSelected(true);
+		return true;
 	},
 	getSelected: function() {
 		return this._selected;
-	}
+	},
+	getValue: function() {
+		return this.getSelected().getValue();
+	},
+	setBlock: function() {
+		this._element.className = 'option option-block';
+	},
+	ensureSelection: function() {
+		if (!this._selected || !this._selected.isEnabled()) {
+			for (var i = 0; i < this._options.length; i ++) {
+				if (this._options[i].isEnabled()) {
+					this.select(this._options[i]);
+					break;
+				}
+			}
+		}
+	},
+	onchange: function(c) {},
+	getOptionByValue: function(value) { return this._optionMap[value]; }
 };
+
 function OptionChoice(data) {
 	this._element = C('option-option', 'a');
 	this._element.href = 'javascript://i2DX';
@@ -122,6 +170,9 @@ function OptionChoice(data) {
 		};
 	}(this);
 	this._value = data[0];
+	this._selected = false;
+	this._enabled = true;
+	this._update();
 }
 OptionChoice.prototype = {
 	renderTo: function(el) {
@@ -133,26 +184,94 @@ OptionChoice.prototype = {
 		return this._value;
 	},
 	setSelected: function(s) {
-		this._element.className = 'option-option ' + (s ? 'option-selected' : 'option-deselected');
+		this._selected = s;
+		this._update();
+	},
+	setEnabled: function(e) {
+		this._enabled = e;
+		this._update();
+	},
+	_update: function() {
+		this._element.className = 'option-option ' + (this._selected ? 'option-selected' : 'option-deselected') + ' ' + (this._enabled ? 'option-enabled' : 'option-disabled');
+	},
+	isEnabled: function() {
+		return this._enabled;
 	}
 };
+
+
 window.onload = function() {
-	var mode = new Option('mode', 'Controller Mode', [
-		['main', 'Scratch on Left'],
-		['alternate', 'Scratch on Right'],
-		['scratch', 'Scratch Only'],
-		['buttons', 'Buttons Only']
-	]);
-	var hard = new Option('hard', 'Hard Mode', [
+
+	var options = {};
+
+	var skinCompatibility = (function() {
+		var m = {};
+		function compile(c) {
+			if (c.include && c.exclude) {
+				alert('c.include and c.exclude should not be specified at the same time!!');
+				return function() { return true; }
+			} else if (c.include) {
+				return function(mode) {
+					for (var i = 0; i < c.include.length; i ++) if (c.include[i] == mode) return true;
+					return false;
+				};
+			} else if (c.exclude) {
+				return function(mode) {
+					for (var i = 0; i < c.include.length; i ++) if (c.include[i] == mode) return false;
+					return true;
+				};
+			} else {
+				return function() { return true; }
+			}
+		}
+		for (var i in i2DX._skins) {
+			var c = i2DX._skins[i];
+			m[i] = compile(c);
+		}
+		return m;
+	})();
+
+	options.layout = new Option('Layout', function() {
+		var list = [];
+		for (var i in i2DX._layouts) {
+			list.push([i, i]);
+		}
+		console.log(list);
+		return list;
+	}());
+
+	options.skin = new Option('Skin', function() {
+		var list = [];
+		for (var i in i2DX._skins) {
+			var c = i2DX._skins[i];
+			list.push([i, c.name + ' <small>by <strong>' + c.author + '</strong></small>']);
+		}
+		console.log(list);
+		return list;
+	}());
+
+	options.skin.setBlock();
+
+	options.layout.onchange = function(c) {
+		for (var i in i2DX._skins) {
+			options.skin.getOptionByValue(i).setEnabled(skinCompatibility[i](c.getValue()));
+		}
+		options.skin.ensureSelection();
+	};
+
+	options.layout.onchange(options.layout.getSelected());
+
+	options.hard = new Option('Hard Mode', [
 		['off', 'Off'],
 		['on', 'On']
 	], 'In hard mode, you can\'t slide between buttons.');
+
 	document.getElementById('launch').onclick = function() {
 		var params = [];
-		if (hard.getSelected().getValue() == 'on') {
-			params.push('hardMode=on');
+		for (var i in options) {
+			params.push(i + '=' + options[i].getValue());
 		}
-		location.href = mode.getSelected().getValue() + '.html' + (params.length > 0 ? '?' : '') + params.join('&');
+		location.href = 'i2DX.html' + (params.length > 0 ? '?' : '') + params.join('&');
 	};
 };
 

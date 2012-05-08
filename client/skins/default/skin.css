@@ -1,0 +1,135 @@
+
+/* style for IIDX keys */
+.iidx_1,
+.iidx_2,
+.iidx_3,
+.iidx_4,
+.iidx_5,
+.iidx_6,
+.iidx_7
+{
+	border: 4px solid #454443;
+	background: #090807;
+}
+
+/* style for IIDX keys (pressed state) */
+.iidx_1.state-pressed,
+.iidx_2.state-pressed,
+.iidx_3.state-pressed,
+.iidx_4.state-pressed,
+.iidx_5.state-pressed,
+.iidx_6.state-pressed,
+.iidx_7.state-pressed
+{
+	background: #8b8685;
+	border-color: #bef;
+}
+
+/* style for turntable */
+.turntable
+{
+	background: #252423;
+}
+
+/* style for spinning part of turntable */
+.turntable .turntable-inner
+{
+	position: absolute;
+	width: 400px; height: 400px;
+	margin-top: -200px; margin-left: -200px;
+	text-align: center;
+	font: bold 100px/400px Helvetica, sans-serif;
+	color: #8b8685;
+	background: #151413;
+	border-radius: 200px;
+	border: 4px solid #454443;
+}
+
+/* turntable style when spinning clockwise */
+.turntable.state-cw
+{
+	background: #452423;
+}
+
+/* turntable style when spinning counterclockwise */
+.turntable.state-ccw
+{
+	background: #252443;
+}
+
+/* style for pop'n buttons */
+.popn_1,
+.popn_2,
+.popn_3,
+.popn_4,
+.popn_5,
+.popn_6,
+.popn_7,
+.popn_8,
+.popn_9
+{
+	border: 4px solid #454443;
+	background: #090807;
+	border-radius: 128px;
+}
+
+/* red pop'n button */
+.popn_5 { border-color: #554443; }
+
+/* blue pop'n button */
+.popn_4,
+.popn_6 { border-color: #454453; }
+
+/* green pop'n button */
+.popn_3,
+.popn_7 { border-color: #455443; }
+
+/* yellow pop'n button */
+.popn_2,
+.popn_8 { border-color: #555443; }
+
+/* white pop'n button */
+.popn_1,
+.popn_9 { border-color: #555453; }
+
+/* style for pop'n buttons (pressed) */
+.popn_1.state-pressed,
+.popn_2.state-pressed,
+.popn_3.state-pressed,
+.popn_4.state-pressed,
+.popn_5.state-pressed,
+.popn_6.state-pressed,
+.popn_7.state-pressed,
+.popn_8.state-pressed,
+.popn_9.state-pressed
+{
+	background: #8b8685;
+}
+
+/* red pop'n button (pressed) */
+.popn_5.state-pressed { border-color: #faa; }
+
+/* blue pop'n button (pressed) */
+.popn_4.state-pressed,
+.popn_6.state-pressed { border-color: #bef; }
+
+/* green pop'n button (pressed) */
+.popn_3.state-pressed,
+.popn_7.state-pressed { border-color: #afa; }
+
+/* yellow pop'n button (pressed) */
+.popn_2.state-pressed,
+.popn_8.state-pressed { border-color: #ffa; }
+
+/* white pop'n button (pressed) */
+.popn_1.state-pressed,
+.popn_9.state-pressed { border-color: #e9e8e7; }
+
+
+/* i2dx logo */
+
+body.layout-popn h1
+{
+	display: block;
+	top: 30px; right: 30px;
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>i2DX</title>
+
+<meta charset="UTF-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=1024">
+
+<script src=js/i2DX.js></script>
+<script src=js/i2DX/io/Connection.js></script>
+<script src=js/i2DX/ui/Component.js></script>
+<script src=js/i2DX/ui/UI.js></script>
+<script src=js/i2DX/events/Touch.js></script>
+<script src=js/i2DX/events/ButtonHandler.js></script>
+<script src=js/i2DX/events/TurntableHandler.js></script>
+<script src=js/i2DX/events/RoundedButtonHandler.js></script>
+<script src=js/i2DX/Application.js></script>
+<link rel=stylesheet href=i2DX.css>
+<script src=/addons></script>
+<script>
+
+(function() {
+	i2DX.setParam('skin', 'default');
+	i2DX.setParam('layout', 'iidx_left');
+	location.search.replace(/(\w+)=([^&]*)/g, function(all, k, v) {
+		i2DX.setParam(k, v);
+	});
+	document.write('<link rel="stylesheet" href="skins/' + i2DX.getParam('skin') + '/skin.css">');
+	document.write('<link rel="apple-touch-icon" href="skins/' + i2DX.getParam('skin') + '/icon.png">');
+})();
+
+</script>
+
+</head>
+<body onload="i2DX.initClient()">
+<h1>i2DX</h1>

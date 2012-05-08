@@ -6,8 +6,8 @@ client = OSC.OSCClient()
 client.connect( ('127.0.0.1', 9000) )
 
 class I2DXWebSocketOSC(libi2dx.I2DXWebSocket):
-	def toggle_key(self, key_id, state):
-		msg = OSC.OSCMessage('/key/' + key_id)
+	def toggle_key(self, key_id, state, player):
+		msg = OSC.OSCMessage('/player%s/%s' % (player, key_id))
 		if state:
 			state = 1.0
 		else:

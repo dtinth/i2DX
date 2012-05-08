@@ -1,0 +1,50 @@
+
+body.layout-popn
+{
+	background: url(images/bg.png) bottom center no-repeat;
+}
+
+.popn_1,
+.popn_2,
+.popn_3,
+.popn_4,
+.popn_5,
+.popn_6,
+.popn_7,
+.popn_8,
+.popn_9
+{
+	background: url(images/buttons.png);
+}
+
+.popn_1,
+.popn_9 { background-position: 0px 0px; }
+.popn_1.state-pressed,
+.popn_9.state-pressed { background-position: -140px 0px; }
+
+.popn_2,
+.popn_8 { background-position: 0px -140px; }
+.popn_2.state-pressed,
+.popn_8.state-pressed { background-position: -140px -140px; }
+
+.popn_3,
+.popn_7 { background-position: 0px -280px; }
+.popn_3.state-pressed,
+.popn_7.state-pressed { background-position: -140px -280px; }
+
+.popn_4,
+.popn_6 { background-position: 0px -420px; }
+.popn_4.state-pressed,
+.popn_6.state-pressed { background-position: -140px -420px; }
+
+.popn_5 { background-position: 0px -560px; }
+.popn_5.state-pressed { background-position: -140px -560px; }
+
+
+body.layout-popn .status {
+	top: 30px;
+	left: 50%;
+	margin-left: -482px;
+	color: #fff;
+	text-shadow: 0 0 1px black, 1px 1px 2px black;
+}

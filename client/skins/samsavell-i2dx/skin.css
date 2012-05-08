@@ -1,0 +1,103 @@
+
+body
+{
+	background: url(skin/bg.png) bottom center;
+	font-family: Helvetica;
+	color: black;
+}
+
+/* style for IIDX keys */
+.iidx_1,
+.iidx_2,
+.iidx_3,
+.iidx_4,
+.iidx_5,
+.iidx_6,
+.iidx_7
+{
+	background: #1a1a1a url(skin/keys.png);
+}
+
+.iidx_1,
+.iidx_2,
+.iidx_3,
+.iidx_4,
+.iidx_5,
+.iidx_6,
+.iidx_7 {
+	border: 5px solid #1A1A1A;
+	-webkit-box-sizing: content-box;
+	border-radius: 4px;
+}
+
+/* image position for white keys */
+.iidx_1,
+.iidx_3,
+.iidx_5,
+.iidx_7 { background-position: -256px 0px; }
+
+/* image position for white keys (pressed) */
+.iidx_1.state-pressed,
+.iidx_3.state-pressed,
+.iidx_5.state-pressed,
+.iidx_7.state-pressed { background-position: -128px 0px; }
+
+/* image position for black keys */
+.iidx_2,
+.iidx_4,
+.iidx_6 { background-position: -256px -256px; }
+
+/* image position for black keys (pressed) */
+.iidx_2.state-pressed,
+.iidx_4.state-pressed,
+.iidx_6.state-pressed { background-position: -128px -256px; }
+
+/* image position for turntable */
+.turntable
+{
+	background: url(skin/scratch-sprite.png);
+	background-position: 0px 50%;
+}
+
+.turntable.placement-left.state-cw,
+.turntable.placement-right.state-ccw { background-position: -256px 50%; }
+
+.turntable.placement-left.state-ccw,
+.turntable.placement-right.state-cw { background-position: -512px 50%; }
+
+/* style for spinning part of turntable */
+.turntable .turntable-inner
+{
+	position: absolute;
+	width: 400px; height: 400px;
+	margin-top: -200px; margin-left: -200px;
+	background: url(skin/turntable-small.png);
+	color: transparent;
+}
+
+/* style for fullscreen turntable */
+.turntable.placement-fullscreen
+{
+	background: transparent;
+}
+
+/* style for spinning part of fullscreen turntable */
+.turntable.placement-fullscreen .turntable-inner
+{
+	position: absolute;
+	width: 1024px; height: 1024px;
+	margin-top: -512px; margin-left: -512px;
+	background: url(skin/turntable.png);
+	color: transparent;
+}
+
+body.layout-iidx_left h1
+{
+	display: block;
+	bottom: 30px;
+	right: 57px;
+	background: url(skin/h1-small.png);
+	color: transparent;
+	width: 400px;
+	height: 51px;
+}
