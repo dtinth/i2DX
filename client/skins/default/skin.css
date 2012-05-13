@@ -125,6 +125,49 @@
 .popn_1.state-pressed,
 .popn_9.state-pressed { border-color: #e9e8e7; }
 
+/* style for Jubeat buttons */
+.jubeat_1,
+.jubeat_2,
+.jubeat_3,
+.jubeat_4,
+.jubeat_5,
+.jubeat_6,
+.jubeat_7,
+.jubeat_8,
+.jubeat_9,
+.jubeat_10,
+.jubeat_11,
+.jubeat_12,
+.jubeat_13,
+.jubeat_14,
+.jubeat_15,
+.jubeat_16
+{
+	border: 4px solid #454443;
+	background: #090807;
+}
+
+/* style for Jubeat buttons (pressed state) */
+.jubeat_1.state-pressed,
+.jubeat_2.state-pressed,
+.jubeat_3.state-pressed,
+.jubeat_4.state-pressed,
+.jubeat_5.state-pressed,
+.jubeat_6.state-pressed,
+.jubeat_7.state-pressed,
+.jubeat_8.state-pressed,
+.jubeat_9.state-pressed,
+.jubeat_10.state-pressed,
+.jubeat_11.state-pressed,
+.jubeat_12.state-pressed,
+.jubeat_13.state-pressed,
+.jubeat_14.state-pressed,
+.jubeat_15.state-pressed,
+.jubeat_16.state-pressed
+{
+	background: #8b8685;
+	border-color: #bef;
+}
 
 /* i2dx logo */
 
