@@ -88,7 +88,7 @@ Server Instructions (Mac OS X + OSCulator)
 You have to install OSCulator, and then use Terminal to install Tornado and pyOSC Python modules.
 
     sudo easy_install tornado
-    sudo easy_install pyOSC
+    sudo easy_install https://trac.v2.nl/raw-attachment/wiki/pyOSC/pyOSC-0.3.5b-5294.tar.gz
 
 Open OSCulator and set it to port 9000.
 
