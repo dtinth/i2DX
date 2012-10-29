@@ -38,7 +38,7 @@ someone's device and use it as a scratch controller [see below] :P).
 It uses the following technologies:
 
 * [WebSocket](http://websocket.org/)
-* Python
+* Python __2.7__
 	* [Tornado Web Server](http://www.tornadoweb.org/)
 	* [pyOSC](https://trac.v2.nl/wiki/pyOSC)
 * [OSCulator](http://www.osculator.net/) (Mac)
@@ -85,16 +85,18 @@ Setup
 Server Instructions (Mac OS X + OSCulator)
 ------------------------------------------
 
-You have to install OSCulator, and then use Terminal to install Tornado and pyOSC Python modules.
+Install [Python 2.7](http://www.python.org/download/) first.
 
-    sudo easy_install tornado
-    sudo easy_install https://trac.v2.nl/raw-attachment/wiki/pyOSC/pyOSC-0.3.5b-5294.tar.gz
+Then you have to install OSCulator, and then use Terminal to install Tornado and pyOSC Python modules.
+
+    sudo easy_install-2.7 tornado
+    sudo easy_install-2.7 https://trac.v2.nl/raw-attachment/wiki/pyOSC/pyOSC-0.3.5b-5294.tar.gz
 
 Open OSCulator and set it to port 9000.
 
 Then, `cd` to the __server__ directory and then
 
-    python server-mac-osculator.py
+    python2.7 server-mac-osculator.py
 
 to start the i2DX server on port 9876. Make sure the port is accessible from the device.
 
