@@ -170,9 +170,35 @@
 }
 
 /* i2dx logo */
-
 body.layout-popn h1
 {
 	display: block;
 	top: 30px; right: 30px;
+}
+
+/* style for taiko */
+.taiko_a1,
+.taiko_a2,
+.taiko_b1,
+.taiko_b2
+{
+	border: 4px solid #454443;
+	background: #090807;
+}
+
+.taiko_a1 { border-radius: 500px 0 0 500px; }
+.taiko_a2 { border-radius: 0 500px 500px 0; }
+
+.taiko_b1,
+.taiko_b2 {
+	background: #252423;
+}
+
+.taiko_a1.state-pressed,
+.taiko_a2.state-pressed,
+.taiko_b1.state-pressed,
+.taiko_b2.state-pressed
+{
+	background: #8b8685;
+	border-color: #bef;
 }

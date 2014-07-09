@@ -84,6 +84,18 @@ i2DX.ui.Component.prototype = {
 	},
 
 	/**
+	 * Checks if the X, Y coordinate is the current component.
+	 */
+	isAtPoint: function(x, y) {
+		var element = document.elementFromPoint(x, y);
+		while (element) {
+			if (element == this._element) return true;
+			element = element.parentNode;
+		}
+		return false;
+	},
+
+	/**
 	 * Returns the DOM element.
 	 * @return {HTMLElement} the element that represents this component
 	 */

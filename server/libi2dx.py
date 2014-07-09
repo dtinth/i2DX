@@ -49,6 +49,11 @@ class I2DXWebSocket(websocket.WebSocketHandler):
 	def on_close(self):
 		print "connection closed"
 
+
+class NoCacheStaticFileHandler(tornado.web.StaticFileHandler):
+	def set_extra_headers(self, path):
+		self.set_header("Cache-control", "no-cache")
+
 def serve(handler):
 
 	global config, clientdir
@@ -57,7 +62,8 @@ def serve(handler):
 		(r"/", I2DXTopHandler),
 		(r"/addons", I2DXComponentsHandler),
 		(r"/ws", handler),
-	], static_path=clientdir)
+		(r"/static/(.*)", NoCacheStaticFileHandler, { "path": clientdir }),
+	])
 
 	port = config.getint('listen', 'port')
 	address = config.get('listen', 'address')

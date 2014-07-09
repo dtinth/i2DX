@@ -49,6 +49,17 @@ i2DX.ui.UI.prototype = {
 	},
 
 	/**
+	 * Adds a button to the UI whose bound is check by actual element.
+	 * @param {String} name name of the button.
+	 * @param {Object} style the style to pass to i2DX.ui.Component#button
+	 */
+	elementButton: function(name, style, player) {
+		player = player || this._defaultPlayer;
+		var component = new i2DX.ui.Component(name, style, player);
+		this.add(component, new i2DX.events.ElementButtonHandler(component));
+	},
+
+	/**
 	 * Adds a turntable to the UI.
 	 * @param {Number} width width of the turntable.
 	 * @param {String} placement either "left" or "right"
